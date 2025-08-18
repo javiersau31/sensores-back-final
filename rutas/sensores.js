@@ -7,12 +7,12 @@ const router = express.Router();
 const AIO_USERNAME = process.env.AIO_USERNAME;
 const AIO_KEY = process.env.AIO_KEY;
 
-// Cache simple
+
 let feedsCache = null;
 let cacheTimestamp = 0;
-const cacheTTL = 15000; // 15 segundos
+const cacheTTL = 15000; 
 
-// GET / -> lista feeds con último dato
+
 router.get('/', async (req, res) => {
   const ahora = Date.now();
   if (feedsCache && (ahora - cacheTimestamp < cacheTTL)) {

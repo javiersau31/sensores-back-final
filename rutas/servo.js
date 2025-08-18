@@ -29,6 +29,21 @@ router.post("/open", async (req, res) => {
   }
 });
 
+router.get("/estado", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${FEED_SERVO}/data/last`,
+      {
+        headers: { "X-AIO-Key": AIO_KEY }
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener estado del servo" });
+  }
+});
+
 
 
 module.exports = router;
